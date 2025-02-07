@@ -1,8 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"os/user"
 
-func main(){
-   str := `{=,;)`
-   fmt.Println(str)
+	"github.com/sedlarevic/tball-interpreter/repl"
+)
+
+func main() {
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Hello %s!\n", user.Username)
+	fmt.Printf("Feel free to type in commands\n")
+	repl.Start(os.Stdin, os.Stdout)
 }
